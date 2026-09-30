@@ -2,6 +2,10 @@
 
 EntityMatchGate compares one immutable applicant profile with one exact OFAC historical entity record. A separately named consumer may dismiss only that candidate after validators conclude `DISTINCT_FROM_CANDIDATE`.
 
+- Live app: [entitymatchgate.pages.dev](https://entitymatchgate.pages.dev)
+- Repository: [github.com/dearmore5382/EntityMatchGate](https://github.com/dearmore5382/EntityMatchGate)
+- StudioNet contract: [`0x3FAff7499A1eAC6100635267F594Ec6B0827Ee03`](https://explorer-studio.genlayer.com/address/0x3FAff7499A1eAC6100635267F594Ec6B0827Ee03)
+
 It does **not** provide active sanctions clearance, certify a vendor, or prove absence from the full OFAC list.
 
 ## Proof obligation

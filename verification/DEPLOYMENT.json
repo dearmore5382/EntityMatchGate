@@ -1,5 +1,7 @@
 {
   "network": "StudioNet",
+  "live_app": "https://entitymatchgate.pages.dev",
+  "repository": "https://github.com/dearmore5382/EntityMatchGate",
   "contract_address": "0x3FAff7499A1eAC6100635267F594Ec6B0827Ee03",
   "status": "VERIFIED_E2E_COMPLETE",
   "verified_readback": {
