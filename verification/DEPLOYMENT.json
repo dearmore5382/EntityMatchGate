@@ -1,0 +1,21 @@
+{
+  "network": "StudioNet",
+  "contract_address": "0x3FAff7499A1eAC6100635267F594Ec6B0827Ee03",
+  "status": "VERIFIED_E2E_COMPLETE",
+  "verified_readback": {
+    "name": "EntityMatchGate",
+    "version": 3,
+    "schema": "candidate-specific-identity-review-v3",
+    "claim_boundary": "ONE_PROFILE_VS_ONE_HISTORICAL_CANDIDATE",
+    "official_source": "https://sanctionslistservice.ofac.treas.gov/entities/{entity_uid}",
+    "screening_count_at_verification": 1,
+    "screening_0_state": "CANDIDATE_DISMISSED"
+  },
+  "verification_date": "2026-09-30",
+  "source_sha256": "0cd9be11353c031fb20c2062dad3442e8bb5ab20a4bc4787e2b458e531341695",
+  "source_parity": true,
+  "e2e_evidence": "live-0x3faff7499a1eac6100635267f594ec6b0827ee03.json",
+  "extended_e2e_evidence": "extended-live-0x3faff7499a1eac6100635267f594ec6b0827ee03.json",
+  "ui_readback_verified": [0, 1],
+  "claim": "Exact v3 deployed source parity and the two-wallet happy/failure/replay lifecycle were verified on StudioNet. The outcome dismisses only OFAC candidate 36 for the locked profile; it is not active sanctions clearance."
+}

@@ -1,0 +1,13 @@
+.status.DISTINCT_FROM_CANDIDATE,
+.status.CANDIDATE_DISMISSED {
+  background: #d7f2b0;
+}
+
+.status.SAME_ENTITY,
+.status.POSSIBLE_MATCH {
+  background: #ffd0c8;
+}
+
+.status.INSUFFICIENT_EVIDENCE {
+  background: #ffe9a8;
+}

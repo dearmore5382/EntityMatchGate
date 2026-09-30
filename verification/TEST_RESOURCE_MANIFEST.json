@@ -1,0 +1,17 @@
+{
+  "schema": "genlayer-test-resource-manifest-v1",
+  "project": "EntityMatchGate",
+  "authoritative_source": {
+    "url_template": "https://sanctionslistservice.ofac.treas.gov/entities/{entity_uid}",
+    "publisher": "U.S. Department of the Treasury, Office of Foreign Assets Control",
+    "purpose": "Runtime entity record used for bounded identity comparison and historical audit; not active sanctions clearance",
+    "retrieval": "Fetched independently by GenLayer validators during assess_screening",
+    "dynamic": true
+  },
+  "local_fixtures": [
+    {"path": "samples/vendor-distinct.json", "kind": "synthetic", "claim": "Input-shape and deterministic lifecycle test only"},
+    {"path": "samples/vendor-potential-match.json", "kind": "template", "claim": "Must be populated from a current official entry before a live run"},
+    {"path": "samples/vendor-insufficient.json", "kind": "synthetic", "claim": "Fail-closed behavior test only"}
+  ],
+  "prohibited_claim": "Local fixtures do not prove the contents or current revision of the official source."
+}

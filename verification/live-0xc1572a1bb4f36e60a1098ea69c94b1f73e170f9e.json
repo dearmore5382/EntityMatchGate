@@ -1,0 +1,128 @@
+{
+  "network": "studionet",
+  "contract": "0xC1572A1BB4F36e60a1098ea69c94b1F73e170f9E",
+  "source_sha256": "cdaeec51da4c719961d5c238ac316c389a02d57ea218e537db2eee8bd6dd20f6",
+  "source_parity": true,
+  "official_source_template": "https://sanctionslistservice.ofac.treas.gov/entities/{entity_uid}",
+  "roles": {
+    "applicant": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+    "consumer": "0xA63DE24e30C88FB1019E8956654730316e36eDBE"
+  },
+  "steps": [
+    {
+      "id": "F1-same-wallet-consumer",
+      "actor": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+      "method": "open_screening",
+      "args": [
+        "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+        "{\"schema\":\"entity-profile-v1\",\"profile_ref\":\"EMG-LIVE-2026-001\",\"legal_name\":\"Northstar Industrial Trading Ltd\",\"aliases\":[\"Northstar Trading\"],\"country\":\"Singapore\",\"registration_id\":\"SG-201912345N\",\"birth_or_incorporation\":\"2019-04-18\"}",
+        "36"
+      ],
+      "return": "INDEPENDENT_CONSUMER_REQUIRED",
+      "expected": [
+        "INDEPENDENT_CONSUMER_REQUIRED"
+      ],
+      "tx_hash": "0x9b17f3088215c554749b6a992f9af3c157e99af605ea743c44fbfdfe4a834ef2",
+      "explorer": "https://explorer-studio.genlayer.com/tx/0x9b17f3088215c554749b6a992f9af3c157e99af605ea743c44fbfdfe4a834ef2",
+      "status": "FINALIZED",
+      "consensus": "MAJORITY_AGREE",
+      "readback": null
+    },
+    {
+      "id": "H1-open-screening",
+      "actor": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+      "method": "open_screening",
+      "args": [
+        "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
+        "{\"schema\":\"entity-profile-v1\",\"profile_ref\":\"EMG-LIVE-2026-001\",\"legal_name\":\"Northstar Industrial Trading Ltd\",\"aliases\":[\"Northstar Trading\"],\"country\":\"Singapore\",\"registration_id\":\"SG-201912345N\",\"birth_or_incorporation\":\"2019-04-18\"}",
+        "36"
+      ],
+      "return": "0",
+      "expected": [
+        "0"
+      ],
+      "tx_hash": "0x3c7dad167bbe65b9909d69cbf36ad11f3f5fb34a211b60134780050053993146",
+      "explorer": "https://explorer-studio.genlayer.com/tx/0x3c7dad167bbe65b9909d69cbf36ad11f3f5fb34a211b60134780050053993146",
+      "status": "FINALIZED",
+      "consensus": "MAJORITY_AGREE",
+      "readback": null
+    },
+    {
+      "id": "F2-wrong-consumer",
+      "actor": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+      "method": "activate_vendor",
+      "args": [
+        0
+      ],
+      "return": "CONSUMER_ONLY",
+      "expected": [
+        "CONSUMER_ONLY"
+      ],
+      "tx_hash": "0x650a003ca8a8670acb6667031ad2b52f74ae6e313f62afde3d4bae80b592e92e",
+      "explorer": "https://explorer-studio.genlayer.com/tx/0x650a003ca8a8670acb6667031ad2b52f74ae6e313f62afde3d4bae80b592e92e",
+      "status": "FINALIZED",
+      "consensus": "MAJORITY_AGREE",
+      "readback": {
+        "applicant": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+        "conflicting_fields": [],
+        "consumer": "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
+        "matched_fields": [],
+        "official_source": "https://sanctionslistservice.ofac.treas.gov/entities/36",
+        "profile": {
+          "aliases": [
+            "Northstar Trading"
+          ],
+          "birth_or_incorporation": "2019-04-18",
+          "country": "Singapore",
+          "legal_name": "Northstar Industrial Trading Ltd",
+          "profile_ref": "EMG-LIVE-2026-001",
+          "registration_id": "SG-201912345N",
+          "schema": "entity-profile-v1"
+        },
+        "relation": "PENDING",
+        "screening_id": 0,
+        "source_revision": "",
+        "state": "PROFILE_LOCKED"
+      }
+    },
+    {
+      "id": "F3-premature-activation",
+      "actor": "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
+      "method": "activate_vendor",
+      "args": [
+        0
+      ],
+      "return": "ACTIVATION_NOT_ALLOWED",
+      "expected": [
+        "ACTIVATION_NOT_ALLOWED"
+      ],
+      "tx_hash": "0x1b4916e0f4465b9aad605bc90d8e3d6033678145562950c71f5b3b8f5e234f40",
+      "explorer": "https://explorer-studio.genlayer.com/tx/0x1b4916e0f4465b9aad605bc90d8e3d6033678145562950c71f5b3b8f5e234f40",
+      "status": "FINALIZED",
+      "consensus": "MAJORITY_AGREE",
+      "readback": {
+        "applicant": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+        "conflicting_fields": [],
+        "consumer": "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
+        "matched_fields": [],
+        "official_source": "https://sanctionslistservice.ofac.treas.gov/entities/36",
+        "profile": {
+          "aliases": [
+            "Northstar Trading"
+          ],
+          "birth_or_incorporation": "2019-04-18",
+          "country": "Singapore",
+          "legal_name": "Northstar Industrial Trading Ltd",
+          "profile_ref": "EMG-LIVE-2026-001",
+          "registration_id": "SG-201912345N",
+          "schema": "entity-profile-v1"
+        },
+        "relation": "PENDING",
+        "screening_id": 0,
+        "source_revision": "",
+        "state": "PROFILE_LOCKED"
+      }
+    }
+  ],
+  "complete": false
+}

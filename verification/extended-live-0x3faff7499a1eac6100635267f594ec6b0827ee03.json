@@ -1,0 +1,217 @@
+{
+  "network": "studionet",
+  "contract": "0x3FAff7499A1eAC6100635267F594Ec6B0827Ee03",
+  "official_source": "https://sanctionslistservice.ofac.treas.gov/entities/36",
+  "steps": [
+    {
+      "id": "A1-invalid-entry-uid",
+      "method": "open_screening",
+      "return": "INVALID_ENTRY_UID",
+      "expected": "INVALID_ENTRY_UID",
+      "tx_hash": "0x90be1a237e7fb0d075bf36cd7cb0a5be7221bc0e3ed04f245370124a2f5e77b3",
+      "explorer": "https://explorer-studio.genlayer.com/tx/0x90be1a237e7fb0d075bf36cd7cb0a5be7221bc0e3ed04f245370124a2f5e77b3",
+      "status": "FINALIZED",
+      "consensus": "MAJORITY_AGREE",
+      "state_unchanged": null,
+      "readback": null
+    },
+    {
+      "id": "A2-invalid-profile",
+      "method": "open_screening",
+      "return": "INVALID_PROFILE",
+      "expected": "INVALID_PROFILE",
+      "tx_hash": "0x97f76631ab227d1c902e3862c4aeeabf4a66994da0ceae2608fd91350c5c44b7",
+      "explorer": "https://explorer-studio.genlayer.com/tx/0x97f76631ab227d1c902e3862c4aeeabf4a66994da0ceae2608fd91350c5c44b7",
+      "status": "FINALIZED",
+      "consensus": "MAJORITY_AGREE",
+      "state_unchanged": null,
+      "readback": null
+    },
+    {
+      "id": "A3-assess-missing",
+      "method": "assess_screening",
+      "return": "SCREENING_NOT_FOUND",
+      "expected": "SCREENING_NOT_FOUND",
+      "tx_hash": "0x0ade6380d1703dcddf9a8da1d164ed0035659f084e24c5818d82e7e886ce0c0e",
+      "explorer": "https://explorer-studio.genlayer.com/tx/0x0ade6380d1703dcddf9a8da1d164ed0035659f084e24c5818d82e7e886ce0c0e",
+      "status": "FINALIZED",
+      "consensus": "MAJORITY_AGREE",
+      "state_unchanged": null,
+      "readback": null
+    },
+    {
+      "id": "A4-dismiss-missing",
+      "method": "dismiss_candidate",
+      "return": "SCREENING_NOT_FOUND",
+      "expected": "SCREENING_NOT_FOUND",
+      "tx_hash": "0x6ebdc0e1406676c311ead2b6e4b683083b54f5d5a84df76da4e71d985a29db6a",
+      "explorer": "https://explorer-studio.genlayer.com/tx/0x6ebdc0e1406676c311ead2b6e4b683083b54f5d5a84df76da4e71d985a29db6a",
+      "status": "FINALIZED",
+      "consensus": "MAJORITY_AGREE",
+      "state_unchanged": null,
+      "readback": null
+    },
+    {
+      "id": "C1-open-name-match",
+      "method": "open_screening",
+      "return": "1",
+      "expected": "1",
+      "tx_hash": "0xd7f19efbaff2c31b57cf05bd0d932ce1c5698da1431568c09666481d5529b6e0",
+      "explorer": "https://explorer-studio.genlayer.com/tx/0xd7f19efbaff2c31b57cf05bd0d932ce1c5698da1431568c09666481d5529b6e0",
+      "status": "FINALIZED",
+      "consensus": "MAJORITY_AGREE",
+      "state_unchanged": null,
+      "readback": null
+    },
+    {
+      "id": "C2-assess-name-match",
+      "method": "assess_screening",
+      "return": "POSSIBLE_MATCH",
+      "expected": "POSSIBLE_MATCH",
+      "tx_hash": "0x21c0954b9a850dba095dfa7a9232586fea9834116990f3c8ef11737e266f889f",
+      "explorer": "https://explorer-studio.genlayer.com/tx/0x21c0954b9a850dba095dfa7a9232586fea9834116990f3c8ef11737e266f889f",
+      "status": "FINALIZED",
+      "consensus": "MAJORITY_AGREE",
+      "state_unchanged": null,
+      "readback": {
+        "applicant": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+        "attempts": 1,
+        "conflicting_fields": [],
+        "consumer": "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
+        "matched_fields": [
+          "ALIAS",
+          "COUNTRY",
+          "NAME"
+        ],
+        "official_source": "https://sanctionslistservice.ofac.treas.gov/entities/36",
+        "profile": {
+          "aliases": [
+            "AERO-CARIBBEAN"
+          ],
+          "birth_or_incorporation": "NOT-PUBLISHED",
+          "country": "Cuba",
+          "legal_name": "AEROCARIBBEAN AIRLINES",
+          "profile_ref": "EMG-POSSIBLE-2026-001",
+          "registration_id": "NOT-PUBLISHED",
+          "schema": "entity-profile-v1"
+        },
+        "profile_digest": "a7f9b51a5ec09a636b8e7122e2708ec89c8c2f2f6b9bc01d6c4d9bea6994c9bd",
+        "relation": "POSSIBLE_MATCH",
+        "screening_id": 1,
+        "source_digest": "e311b28b87e8228874cadd5acebc19448b6be75a762f059cf04ee1f2c8a65156",
+        "source_revision": "OFAC-ENTITY-36-e311b28b87e82288",
+        "state": "POSSIBLE_MATCH"
+      }
+    },
+    {
+      "id": "C3-fail-closed-possible",
+      "method": "dismiss_candidate",
+      "return": "DISMISSAL_NOT_ALLOWED",
+      "expected": "DISMISSAL_NOT_ALLOWED",
+      "tx_hash": "0x2da165db89038998ca305436a1fd36624646f68a69b20d60477be972776f88ff",
+      "explorer": "https://explorer-studio.genlayer.com/tx/0x2da165db89038998ca305436a1fd36624646f68a69b20d60477be972776f88ff",
+      "status": "FINALIZED",
+      "consensus": "MAJORITY_AGREE",
+      "state_unchanged": true,
+      "readback": {
+        "applicant": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+        "attempts": 1,
+        "conflicting_fields": [],
+        "consumer": "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
+        "matched_fields": [
+          "ALIAS",
+          "COUNTRY",
+          "NAME"
+        ],
+        "official_source": "https://sanctionslistservice.ofac.treas.gov/entities/36",
+        "profile": {
+          "aliases": [
+            "AERO-CARIBBEAN"
+          ],
+          "birth_or_incorporation": "NOT-PUBLISHED",
+          "country": "Cuba",
+          "legal_name": "AEROCARIBBEAN AIRLINES",
+          "profile_ref": "EMG-POSSIBLE-2026-001",
+          "registration_id": "NOT-PUBLISHED",
+          "schema": "entity-profile-v1"
+        },
+        "profile_digest": "a7f9b51a5ec09a636b8e7122e2708ec89c8c2f2f6b9bc01d6c4d9bea6994c9bd",
+        "relation": "POSSIBLE_MATCH",
+        "screening_id": 1,
+        "source_digest": "e311b28b87e8228874cadd5acebc19448b6be75a762f059cf04ee1f2c8a65156",
+        "source_revision": "OFAC-ENTITY-36-e311b28b87e82288",
+        "state": "POSSIBLE_MATCH"
+      }
+    },
+    {
+      "id": "A5-terminal-assessment-replay",
+      "method": "assess_screening",
+      "return": "SCREENING_NOT_ASSESSABLE",
+      "expected": "SCREENING_NOT_ASSESSABLE",
+      "tx_hash": "0xb195e0ea437df0fb955fcc135c18537226a94f2b4d53881dabdcd3f6091c9d5b",
+      "explorer": "https://explorer-studio.genlayer.com/tx/0xb195e0ea437df0fb955fcc135c18537226a94f2b4d53881dabdcd3f6091c9d5b",
+      "status": "FINALIZED",
+      "consensus": "MAJORITY_AGREE",
+      "state_unchanged": true,
+      "readback": {
+        "applicant": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+        "attempts": 1,
+        "conflicting_fields": [],
+        "consumer": "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
+        "matched_fields": [
+          "ALIAS",
+          "COUNTRY",
+          "NAME"
+        ],
+        "official_source": "https://sanctionslistservice.ofac.treas.gov/entities/36",
+        "profile": {
+          "aliases": [
+            "AERO-CARIBBEAN"
+          ],
+          "birth_or_incorporation": "NOT-PUBLISHED",
+          "country": "Cuba",
+          "legal_name": "AEROCARIBBEAN AIRLINES",
+          "profile_ref": "EMG-POSSIBLE-2026-001",
+          "registration_id": "NOT-PUBLISHED",
+          "schema": "entity-profile-v1"
+        },
+        "profile_digest": "a7f9b51a5ec09a636b8e7122e2708ec89c8c2f2f6b9bc01d6c4d9bea6994c9bd",
+        "relation": "POSSIBLE_MATCH",
+        "screening_id": 1,
+        "source_digest": "e311b28b87e8228874cadd5acebc19448b6be75a762f059cf04ee1f2c8a65156",
+        "source_revision": "OFAC-ENTITY-36-e311b28b87e82288",
+        "state": "POSSIBLE_MATCH"
+      }
+    }
+  ],
+  "complete": true,
+  "final_readback": {
+    "applicant": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+    "attempts": 1,
+    "conflicting_fields": [],
+    "consumer": "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
+    "matched_fields": [
+      "ALIAS",
+      "COUNTRY",
+      "NAME"
+    ],
+    "official_source": "https://sanctionslistservice.ofac.treas.gov/entities/36",
+    "profile": {
+      "aliases": [
+        "AERO-CARIBBEAN"
+      ],
+      "birth_or_incorporation": "NOT-PUBLISHED",
+      "country": "Cuba",
+      "legal_name": "AEROCARIBBEAN AIRLINES",
+      "profile_ref": "EMG-POSSIBLE-2026-001",
+      "registration_id": "NOT-PUBLISHED",
+      "schema": "entity-profile-v1"
+    },
+    "profile_digest": "a7f9b51a5ec09a636b8e7122e2708ec89c8c2f2f6b9bc01d6c4d9bea6994c9bd",
+    "relation": "POSSIBLE_MATCH",
+    "screening_id": 1,
+    "source_digest": "e311b28b87e8228874cadd5acebc19448b6be75a762f059cf04ee1f2c8a65156",
+    "source_revision": "OFAC-ENTITY-36-e311b28b87e82288",
+    "state": "POSSIBLE_MATCH"
+  }
+}

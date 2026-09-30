@@ -1,0 +1,28 @@
+{
+  "network": "StudioNet",
+  "warning": "These deployments are diagnostic history only. None is the current submission contract.",
+  "deployments": [
+    {
+      "address": "0xb93886e87f9Fb2113C4327C4aa88F0b488c3c103",
+      "reason": "The full OFAC XML URL redirected and web.render ended with ERR_ABORTED.",
+      "evidence_file": "live-0xb93886e87f9fb2113c4327c4aa88f0b488c3c103.json"
+    },
+    {
+      "address": "0x3fb463F1C95a985f628FD7D333c223856438AaAe",
+      "reason": "The entity endpoint response included an unbounded reference-table payload and exceeded the intended prompt boundary.",
+      "evidence_file": "live-0x3fb463f1c95a985f628fd7d333c223856438aaae.json"
+    },
+    {
+      "address": "0xC1572A1BB4F36e60a1098ea69c94b1F73e170f9E",
+      "reason": "Bounded retrieval worked, but the model was incorrectly required to echo deterministic source metadata, producing INVALID_DECISION.",
+      "evidence_file": "live-0xc1572a1bb4f36e60a1098ea69c94b1f73e170f9e.json",
+      "diagnostic_transaction": "0xae7207a3558aa9218f9907c200e69ada42b78f01980e04699530c414903bdc5d"
+    },
+    {
+      "address": "0xA74aCbaD4F03b3b639cFCEf7A7c1596f1bD11114",
+      "reason": "Source parity and deterministic failure paths passed, but OFAC dataAsOf changed between validator fetches, causing MAJORITY_DISAGREE despite the same relation result. Replaced by v3 stable entity-only commitment.",
+      "evidence_file": "live-0xa74acbad4f03b3b639cfcef7a7c1596f1bd11114.json",
+      "diagnostic_transaction": "0x88ea59879ff4d707e5098aea43058e4c9838266bcd38baab6b36371a3457d231"
+    }
+  ]
+}
