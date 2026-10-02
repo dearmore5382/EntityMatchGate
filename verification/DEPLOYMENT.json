@@ -2,22 +2,22 @@
   "network": "StudioNet",
   "live_app": "https://entitymatchgate.pages.dev",
   "repository": "https://github.com/dearmore5382/EntityMatchGate",
-  "contract_address": "0x3FAff7499A1eAC6100635267F594Ec6B0827Ee03",
-  "status": "VERIFIED_E2E_COMPLETE",
+  "contract_address": "0xeC8dc7def8232b4fa1d8a0fF64354eDE88E76e2f",
+  "contract_explorer": "https://explorer-studio.genlayer.com/address/0xeC8dc7def8232b4fa1d8a0fF64354eDE88E76e2f",
+  "status": "V4_CONTRACT_E2E_VERIFIED_UI_DEPLOY_PENDING",
   "verified_readback": {
     "name": "EntityMatchGate",
-    "version": 3,
-    "schema": "candidate-specific-identity-review-v3",
-    "claim_boundary": "ONE_PROFILE_VS_ONE_HISTORICAL_CANDIDATE",
-    "official_source": "https://sanctionslistservice.ofac.treas.gov/entities/{entity_uid}",
-    "screening_count_at_verification": 1,
-    "screening_0_state": "CANDIDATE_DISMISSED"
+    "version": 4,
+    "schema": "official-source-permit-v4",
+    "claim_boundary": "ONE_GLEIF_ENTITY_VS_ONE_OFAC_CANDIDATE_ONE_TIME_PERMIT",
+    "screening_id": 1,
+    "state": "PERMIT_CONSUMED",
+    "relation": "DISTINCT_FROM_CANDIDATE",
+    "permit_consumer": "0xA63DE24e30C88FB1019E8956654730316e36eDBE"
   },
-  "verification_date": "2026-09-30",
-  "source_sha256": "0cd9be11353c031fb20c2062dad3442e8bb5ab20a4bc4787e2b458e531341695",
+  "verification_date": "2026-10-02",
+  "source_sha256": "9c7f62b64530bc57b6d4ad7913311b5b468ba56c012960ab58cfe54883e48932",
   "source_parity": true,
-  "e2e_evidence": "live-0x3faff7499a1eac6100635267f594ec6b0827ee03.json",
-  "extended_e2e_evidence": "extended-live-0x3faff7499a1eac6100635267f594ec6b0827ee03.json",
-  "ui_readback_verified": [0, 1],
-  "claim": "Exact v3 deployed source parity and the two-wallet happy/failure/replay lifecycle were verified on StudioNet. The outcome dismisses only OFAC candidate 36 for the locked profile; it is not active sanctions clearance."
+  "e2e_evidence": "live-0xec8dc7def8232b4fa1d8a0ff64354ede88e76e2f.json",
+  "claim": "Exact v4 deployed source parity and an 11-transaction two-wallet lifecycle were verified on StudioNet. Validators fetched and committed independent GLEIF and OFAC evidence; the requester activated and the named relying party consumed a one-time permit. This is candidate-specific identity resolution, not current sanctions clearance."
 }

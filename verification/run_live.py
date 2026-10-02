@@ -13,7 +13,7 @@ from genlayer_py.abi.transactions import serialize
 from genlayer_py.chains import studionet
 
 ROOT = Path(__file__).resolve().parents[1]
-ADDRESS = "0x3FAff7499A1eAC6100635267F594Ec6B0827Ee03"
+ADDRESS = "0xeC8dc7def8232b4fa1d8a0fF64354eDE88E76e2f"
 RPC = "https://studio.genlayer.com/api"
 KEY_SOURCE = ROOT.parent / "DAOProposalContextVerifier" / ".env.lifecycle"
 OUT = ROOT / "verification" / ("live-" + ADDRESS.lower() + ".json")
@@ -81,8 +81,9 @@ def main():
     clients = [create_client(chain=studionet, account=account) for account in accounts]
     journal = {"network": "studionet", "contract": ADDRESS,
         "source_sha256": hashlib.sha256(local).hexdigest(), "source_parity": True,
-        "official_source_template": "https://sanctionslistservice.ofac.treas.gov/entities/{entity_uid}",
-        "roles": {"applicant": accounts[0].address, "consumer": accounts[1].address},
+        "official_sources": ["https://api.gleif.org/api/v1/lei-records/{lei}",
+            "https://sanctionslistservice.ofac.treas.gov/entities/{entity_uid}"],
+        "roles": {"requester": accounts[0].address, "relying_party": accounts[1].address},
         "steps": [], "complete": False}
 
     def send(step_id, actor, method, args, expected, screening_id=None):
@@ -103,35 +104,27 @@ def main():
             raise RuntimeError(step_id + ":UNEXPECTED:" + actual)
         return actual
 
-    profile = json.dumps({"schema": "entity-profile-v1", "profile_ref": "EMG-LIVE-2026-001",
-        "legal_name": "Northstar Industrial Trading Ltd", "aliases": ["Northstar Trading"],
-        "country": "Singapore", "registration_id": "SG-201912345N",
-        "birth_or_incorporation": "2019-04-18"}, separators=(",", ":"))
-    send("F1-same-wallet-consumer", 0, "open_screening",
-        [accounts[0].address, profile, "36"], "INDEPENDENT_CONSUMER_REQUIRED")
+    lei = "5493001KJTIIGC8Y1R12"
+    start = json.loads(view("get_counts"))["screening_count"]
+    send("F1-same-wallet-relying-party", 0, "open_screening",
+        [accounts[0].address, lei, "36"], "INDEPENDENT_RELYING_PARTY_REQUIRED")
     screening_id = int(send("H1-open-screening", 0, "open_screening",
-        [accounts[1].address, profile, "36"], "0"))
-    send("F2-wrong-consumer", 0, "dismiss_candidate", [screening_id, "0" * 64, "0" * 64, "none"], "CONSUMER_ONLY", screening_id)
-    send("F3-premature-dismissal", 1, "dismiss_candidate", [screening_id, "0" * 64, "0" * 64, "none"],
-        "DISMISSAL_NOT_ALLOWED", screening_id)
+        [accounts[1].address, lei, "36"], str(start)))
+    send("F2-premature-permit", 0, "activate_permit", [screening_id, "0" * 64, "0" * 64],
+        "PERMIT_NOT_ALLOWED", screening_id)
     relation = send("H2-permissionless-assessment", 1, "assess_screening", [screening_id],
-        ("SAME_ENTITY", "POSSIBLE_MATCH", "DISTINCT_FROM_CANDIDATE", "INSUFFICIENT_EVIDENCE"), screening_id)
-    if relation != "INSUFFICIENT_EVIDENCE":
-        send("F4-replay-assessment", 0, "assess_screening", [screening_id],
-            "SCREENING_NOT_ASSESSABLE", screening_id)
+        "DISTINCT_FROM_CANDIDATE", screening_id)
+    send("F3-replay-assessment", 0, "assess_screening", [screening_id], "SCREENING_NOT_ASSESSABLE", screening_id)
     if relation == "DISTINCT_FROM_CANDIDATE":
         record = json.loads(view("get_screening", [screening_id]))
-        send("F5-wrong-commitment", 1, "dismiss_candidate",
-            [screening_id, "0" * 64, record["source_digest"], record["source_revision"]],
-            "COMMITMENT_MISMATCH", screening_id)
-        send("H3-consumer-dismissal", 1, "dismiss_candidate",
-            [screening_id, record["profile_digest"], record["source_digest"], record["source_revision"]],
-            "CANDIDATE_DISMISSED", screening_id)
-        send("F6-replay-dismissal", 1, "dismiss_candidate",
-            [screening_id, record["profile_digest"], record["source_digest"], record["source_revision"]],
-            "DISMISSAL_NOT_ALLOWED", screening_id)
+        send("F4-wrong-requester", 1, "activate_permit", [screening_id, record["gleif_digest"], record["ofac_digest"]], "REQUESTER_ONLY", screening_id)
+        send("F5-wrong-commitment", 0, "activate_permit", [screening_id, "0" * 64, record["ofac_digest"]], "COMMITMENT_MISMATCH", screening_id)
+        send("H3-activate-permit", 0, "activate_permit", [screening_id, record["gleif_digest"], record["ofac_digest"]], "PERMIT_ACTIVE", screening_id)
+        send("F6-wrong-consumer", 0, "consume_permit", [screening_id], "RELYING_PARTY_ONLY", screening_id)
+        send("H4-consume-permit", 1, "consume_permit", [screening_id], "PERMIT_CONSUMED", screening_id)
+        send("F7-replay-consumption", 1, "consume_permit", [screening_id], "NO_ACTIVE_PERMIT", screening_id)
     journal["final_screening"] = json.loads(view("get_screening", [screening_id]))
-    journal["complete"] = relation == "DISTINCT_FROM_CANDIDATE" and journal["final_screening"]["state"] == "CANDIDATE_DISMISSED"
+    journal["complete"] = relation == "DISTINCT_FROM_CANDIDATE" and journal["final_screening"]["state"] == "PERMIT_CONSUMED"
     OUT.write_text(json.dumps(journal, indent=2) + "\n", encoding="utf-8")
     print("E2E_COMPLETE" if journal["complete"] else "E2E_REVIEW", OUT)
 

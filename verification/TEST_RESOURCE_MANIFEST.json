@@ -1,17 +1,26 @@
 {
   "schema": "genlayer-test-resource-manifest-v1",
   "project": "EntityMatchGate",
-  "authoritative_source": {
-    "url_template": "https://sanctionslistservice.ofac.treas.gov/entities/{entity_uid}",
-    "publisher": "U.S. Department of the Treasury, Office of Foreign Assets Control",
-    "purpose": "Runtime entity record used for bounded identity comparison and historical audit; not active sanctions clearance",
-    "retrieval": "Fetched independently by GenLayer validators during assess_screening",
-    "dynamic": true
-  },
+  "authoritative_sources": [
+    {
+      "url_template": "https://api.gleif.org/api/v1/lei-records/{lei}",
+      "publisher": "Global Legal Entity Identifier Foundation",
+      "purpose": "Independent applicant-side legal-entity identity facts from the GLEIF Golden Copy",
+      "retrieval": "Fetched independently by GenLayer validators during assess_screening",
+      "dynamic": true
+    },
+    {
+      "url_template": "https://sanctionslistservice.ofac.treas.gov/entities/{entity_uid}",
+      "publisher": "U.S. Department of the Treasury, Office of Foreign Assets Control",
+      "purpose": "Exact historical candidate used for candidate-specific identity resolution; not current sanctions clearance",
+      "retrieval": "Fetched independently by GenLayer validators during assess_screening",
+      "dynamic": true
+    }
+  ],
   "local_fixtures": [
     {"path": "samples/vendor-distinct.json", "kind": "synthetic", "claim": "Input-shape and deterministic lifecycle test only"},
     {"path": "samples/vendor-potential-match.json", "kind": "template", "claim": "Must be populated from a current official entry before a live run"},
     {"path": "samples/vendor-insufficient.json", "kind": "synthetic", "claim": "Fail-closed behavior test only"}
   ],
-  "prohibited_claim": "Local fixtures do not prove the contents or current revision of the official source."
+  "prohibited_claim": "Local fixtures and mocked transports do not prove current official-source contents. Only finalized v4 live receipts plus committed readback digests establish the live execution claim."
 }

@@ -1,0 +1,442 @@
+{
+  "network": "studionet",
+  "contract": "0xeC8dc7def8232b4fa1d8a0fF64354eDE88E76e2f",
+  "source_sha256": "9c7f62b64530bc57b6d4ad7913311b5b468ba56c012960ab58cfe54883e48932",
+  "source_parity": true,
+  "official_sources": [
+    "https://api.gleif.org/api/v1/lei-records/{lei}",
+    "https://sanctionslistservice.ofac.treas.gov/entities/{entity_uid}"
+  ],
+  "roles": {
+    "requester": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+    "relying_party": "0xA63DE24e30C88FB1019E8956654730316e36eDBE"
+  },
+  "steps": [
+    {
+      "id": "F1-same-wallet-relying-party",
+      "actor": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+      "method": "open_screening",
+      "args": [
+        "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+        "5493001KJTIIGC8Y1R12",
+        "36"
+      ],
+      "return": "INDEPENDENT_RELYING_PARTY_REQUIRED",
+      "expected": [
+        "INDEPENDENT_RELYING_PARTY_REQUIRED"
+      ],
+      "tx_hash": "0x0fd5a0e8066da462a420ab61bb61c9165e93b588d57ab52cbf2216d2d83b93d8",
+      "explorer": "https://explorer-studio.genlayer.com/tx/0x0fd5a0e8066da462a420ab61bb61c9165e93b588d57ab52cbf2216d2d83b93d8",
+      "status": "FINALIZED",
+      "consensus": "MAJORITY_AGREE",
+      "readback": null
+    },
+    {
+      "id": "H1-open-screening",
+      "actor": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+      "method": "open_screening",
+      "args": [
+        "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
+        "5493001KJTIIGC8Y1R12",
+        "36"
+      ],
+      "return": "1",
+      "expected": [
+        "1"
+      ],
+      "tx_hash": "0x03976c5e2fe627f05898c7b35abb2f971ef2cf71dd2117031c82639f95a29e27",
+      "explorer": "https://explorer-studio.genlayer.com/tx/0x03976c5e2fe627f05898c7b35abb2f971ef2cf71dd2117031c82639f95a29e27",
+      "status": "FINALIZED",
+      "consensus": "MAJORITY_AGREE",
+      "readback": null
+    },
+    {
+      "id": "F2-premature-permit",
+      "actor": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+      "method": "activate_permit",
+      "args": [
+        1,
+        "0000000000000000000000000000000000000000000000000000000000000000",
+        "0000000000000000000000000000000000000000000000000000000000000000"
+      ],
+      "return": "PERMIT_NOT_ALLOWED",
+      "expected": [
+        "PERMIT_NOT_ALLOWED"
+      ],
+      "tx_hash": "0x2d99f3a25525c1732e96efc3caa1945b65af8de656d69e63222ffeca5e3995e9",
+      "explorer": "https://explorer-studio.genlayer.com/tx/0x2d99f3a25525c1732e96efc3caa1945b65af8de656d69e63222ffeca5e3995e9",
+      "status": "FINALIZED",
+      "consensus": "MAJORITY_AGREE",
+      "readback": {
+        "attempts": 0,
+        "conflicting_fields": [],
+        "gleif_digest": "",
+        "gleif_revision": "",
+        "gleif_source": "https://api.gleif.org/api/v1/lei-records/5493001KJTIIGC8Y1R12",
+        "lei": "5493001KJTIIGC8Y1R12",
+        "matched_fields": [],
+        "ofac_digest": "",
+        "ofac_revision": "",
+        "ofac_source": "https://sanctionslistservice.ofac.treas.gov/entities/36",
+        "official_entry_uid": "36",
+        "permit_consumer": "",
+        "relation": "PENDING",
+        "relying_party": "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
+        "requester": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+        "screening_id": 1,
+        "state": "SOURCES_LOCKED"
+      }
+    },
+    {
+      "id": "H2-permissionless-assessment",
+      "actor": "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
+      "method": "assess_screening",
+      "args": [
+        1
+      ],
+      "return": "DISTINCT_FROM_CANDIDATE",
+      "expected": [
+        "DISTINCT_FROM_CANDIDATE"
+      ],
+      "tx_hash": "0xbb18d34a5351cd6662917b8974ee8c6de6d62e1b5fd506f5a2ef9e02d062a8c8",
+      "explorer": "https://explorer-studio.genlayer.com/tx/0xbb18d34a5351cd6662917b8974ee8c6de6d62e1b5fd506f5a2ef9e02d062a8c8",
+      "status": "FINALIZED",
+      "consensus": "MAJORITY_AGREE",
+      "readback": {
+        "attempts": 1,
+        "conflicting_fields": [
+          "COUNTRY",
+          "JURISDICTION",
+          "LEGAL_NAME",
+          "OTHER_NAME"
+        ],
+        "gleif_digest": "05e3c41b653ecad896f51fbba6268836cae1c3466f8b9a72268033ae5ed610d9",
+        "gleif_revision": "2026-10-01T16:00:00Z",
+        "gleif_source": "https://api.gleif.org/api/v1/lei-records/5493001KJTIIGC8Y1R12",
+        "lei": "5493001KJTIIGC8Y1R12",
+        "matched_fields": [],
+        "ofac_digest": "e311b28b87e8228874cadd5acebc19448b6be75a762f059cf04ee1f2c8a65156",
+        "ofac_revision": "OFAC-ENTITY-36-e311b28b87e82288",
+        "ofac_source": "https://sanctionslistservice.ofac.treas.gov/entities/36",
+        "official_entry_uid": "36",
+        "permit_consumer": "",
+        "relation": "DISTINCT_FROM_CANDIDATE",
+        "relying_party": "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
+        "requester": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+        "screening_id": 1,
+        "state": "DISTINCT_FROM_CANDIDATE"
+      }
+    },
+    {
+      "id": "F3-replay-assessment",
+      "actor": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+      "method": "assess_screening",
+      "args": [
+        1
+      ],
+      "return": "SCREENING_NOT_ASSESSABLE",
+      "expected": [
+        "SCREENING_NOT_ASSESSABLE"
+      ],
+      "tx_hash": "0x11b8aa96abe2c78f3a590dffd81e2a1b19f0671b73e0e60f214ab24c91037d71",
+      "explorer": "https://explorer-studio.genlayer.com/tx/0x11b8aa96abe2c78f3a590dffd81e2a1b19f0671b73e0e60f214ab24c91037d71",
+      "status": "FINALIZED",
+      "consensus": "MAJORITY_AGREE",
+      "readback": {
+        "attempts": 1,
+        "conflicting_fields": [
+          "COUNTRY",
+          "JURISDICTION",
+          "LEGAL_NAME",
+          "OTHER_NAME"
+        ],
+        "gleif_digest": "05e3c41b653ecad896f51fbba6268836cae1c3466f8b9a72268033ae5ed610d9",
+        "gleif_revision": "2026-10-01T16:00:00Z",
+        "gleif_source": "https://api.gleif.org/api/v1/lei-records/5493001KJTIIGC8Y1R12",
+        "lei": "5493001KJTIIGC8Y1R12",
+        "matched_fields": [],
+        "ofac_digest": "e311b28b87e8228874cadd5acebc19448b6be75a762f059cf04ee1f2c8a65156",
+        "ofac_revision": "OFAC-ENTITY-36-e311b28b87e82288",
+        "ofac_source": "https://sanctionslistservice.ofac.treas.gov/entities/36",
+        "official_entry_uid": "36",
+        "permit_consumer": "",
+        "relation": "DISTINCT_FROM_CANDIDATE",
+        "relying_party": "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
+        "requester": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+        "screening_id": 1,
+        "state": "DISTINCT_FROM_CANDIDATE"
+      }
+    },
+    {
+      "id": "F4-wrong-requester",
+      "actor": "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
+      "method": "activate_permit",
+      "args": [
+        1,
+        "05e3c41b653ecad896f51fbba6268836cae1c3466f8b9a72268033ae5ed610d9",
+        "e311b28b87e8228874cadd5acebc19448b6be75a762f059cf04ee1f2c8a65156"
+      ],
+      "return": "REQUESTER_ONLY",
+      "expected": [
+        "REQUESTER_ONLY"
+      ],
+      "tx_hash": "0x6ecd0d6a153481f27f28d2aeb6719ffb32fd8a33d2f45dc8c35b3b462bf71085",
+      "explorer": "https://explorer-studio.genlayer.com/tx/0x6ecd0d6a153481f27f28d2aeb6719ffb32fd8a33d2f45dc8c35b3b462bf71085",
+      "status": "FINALIZED",
+      "consensus": "MAJORITY_AGREE",
+      "readback": {
+        "attempts": 1,
+        "conflicting_fields": [
+          "COUNTRY",
+          "JURISDICTION",
+          "LEGAL_NAME",
+          "OTHER_NAME"
+        ],
+        "gleif_digest": "05e3c41b653ecad896f51fbba6268836cae1c3466f8b9a72268033ae5ed610d9",
+        "gleif_revision": "2026-10-01T16:00:00Z",
+        "gleif_source": "https://api.gleif.org/api/v1/lei-records/5493001KJTIIGC8Y1R12",
+        "lei": "5493001KJTIIGC8Y1R12",
+        "matched_fields": [],
+        "ofac_digest": "e311b28b87e8228874cadd5acebc19448b6be75a762f059cf04ee1f2c8a65156",
+        "ofac_revision": "OFAC-ENTITY-36-e311b28b87e82288",
+        "ofac_source": "https://sanctionslistservice.ofac.treas.gov/entities/36",
+        "official_entry_uid": "36",
+        "permit_consumer": "",
+        "relation": "DISTINCT_FROM_CANDIDATE",
+        "relying_party": "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
+        "requester": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+        "screening_id": 1,
+        "state": "DISTINCT_FROM_CANDIDATE"
+      }
+    },
+    {
+      "id": "F5-wrong-commitment",
+      "actor": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+      "method": "activate_permit",
+      "args": [
+        1,
+        "0000000000000000000000000000000000000000000000000000000000000000",
+        "e311b28b87e8228874cadd5acebc19448b6be75a762f059cf04ee1f2c8a65156"
+      ],
+      "return": "COMMITMENT_MISMATCH",
+      "expected": [
+        "COMMITMENT_MISMATCH"
+      ],
+      "tx_hash": "0x8e69e2e4037a05d3bb3cc7cd6de613fc4e7177e9fa0adba1363021ed6d356ca6",
+      "explorer": "https://explorer-studio.genlayer.com/tx/0x8e69e2e4037a05d3bb3cc7cd6de613fc4e7177e9fa0adba1363021ed6d356ca6",
+      "status": "FINALIZED",
+      "consensus": "MAJORITY_AGREE",
+      "readback": {
+        "attempts": 1,
+        "conflicting_fields": [
+          "COUNTRY",
+          "JURISDICTION",
+          "LEGAL_NAME",
+          "OTHER_NAME"
+        ],
+        "gleif_digest": "05e3c41b653ecad896f51fbba6268836cae1c3466f8b9a72268033ae5ed610d9",
+        "gleif_revision": "2026-10-01T16:00:00Z",
+        "gleif_source": "https://api.gleif.org/api/v1/lei-records/5493001KJTIIGC8Y1R12",
+        "lei": "5493001KJTIIGC8Y1R12",
+        "matched_fields": [],
+        "ofac_digest": "e311b28b87e8228874cadd5acebc19448b6be75a762f059cf04ee1f2c8a65156",
+        "ofac_revision": "OFAC-ENTITY-36-e311b28b87e82288",
+        "ofac_source": "https://sanctionslistservice.ofac.treas.gov/entities/36",
+        "official_entry_uid": "36",
+        "permit_consumer": "",
+        "relation": "DISTINCT_FROM_CANDIDATE",
+        "relying_party": "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
+        "requester": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+        "screening_id": 1,
+        "state": "DISTINCT_FROM_CANDIDATE"
+      }
+    },
+    {
+      "id": "H3-activate-permit",
+      "actor": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+      "method": "activate_permit",
+      "args": [
+        1,
+        "05e3c41b653ecad896f51fbba6268836cae1c3466f8b9a72268033ae5ed610d9",
+        "e311b28b87e8228874cadd5acebc19448b6be75a762f059cf04ee1f2c8a65156"
+      ],
+      "return": "PERMIT_ACTIVE",
+      "expected": [
+        "PERMIT_ACTIVE"
+      ],
+      "tx_hash": "0xd62c9f49fc4c72f65ad383e5f6e5199eae81d7b971281c0601d20066304e707f",
+      "explorer": "https://explorer-studio.genlayer.com/tx/0xd62c9f49fc4c72f65ad383e5f6e5199eae81d7b971281c0601d20066304e707f",
+      "status": "FINALIZED",
+      "consensus": "MAJORITY_AGREE",
+      "readback": {
+        "attempts": 1,
+        "conflicting_fields": [
+          "COUNTRY",
+          "JURISDICTION",
+          "LEGAL_NAME",
+          "OTHER_NAME"
+        ],
+        "gleif_digest": "05e3c41b653ecad896f51fbba6268836cae1c3466f8b9a72268033ae5ed610d9",
+        "gleif_revision": "2026-10-01T16:00:00Z",
+        "gleif_source": "https://api.gleif.org/api/v1/lei-records/5493001KJTIIGC8Y1R12",
+        "lei": "5493001KJTIIGC8Y1R12",
+        "matched_fields": [],
+        "ofac_digest": "e311b28b87e8228874cadd5acebc19448b6be75a762f059cf04ee1f2c8a65156",
+        "ofac_revision": "OFAC-ENTITY-36-e311b28b87e82288",
+        "ofac_source": "https://sanctionslistservice.ofac.treas.gov/entities/36",
+        "official_entry_uid": "36",
+        "permit_consumer": "",
+        "relation": "DISTINCT_FROM_CANDIDATE",
+        "relying_party": "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
+        "requester": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+        "screening_id": 1,
+        "state": "PERMIT_ACTIVE"
+      }
+    },
+    {
+      "id": "F6-wrong-consumer",
+      "actor": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+      "method": "consume_permit",
+      "args": [
+        1
+      ],
+      "return": "RELYING_PARTY_ONLY",
+      "expected": [
+        "RELYING_PARTY_ONLY"
+      ],
+      "tx_hash": "0x356e4862bde6d8c135617f6b7f21b39a77e7f5aa649bc3c48ae380a668970088",
+      "explorer": "https://explorer-studio.genlayer.com/tx/0x356e4862bde6d8c135617f6b7f21b39a77e7f5aa649bc3c48ae380a668970088",
+      "status": "FINALIZED",
+      "consensus": "MAJORITY_AGREE",
+      "readback": {
+        "attempts": 1,
+        "conflicting_fields": [
+          "COUNTRY",
+          "JURISDICTION",
+          "LEGAL_NAME",
+          "OTHER_NAME"
+        ],
+        "gleif_digest": "05e3c41b653ecad896f51fbba6268836cae1c3466f8b9a72268033ae5ed610d9",
+        "gleif_revision": "2026-10-01T16:00:00Z",
+        "gleif_source": "https://api.gleif.org/api/v1/lei-records/5493001KJTIIGC8Y1R12",
+        "lei": "5493001KJTIIGC8Y1R12",
+        "matched_fields": [],
+        "ofac_digest": "e311b28b87e8228874cadd5acebc19448b6be75a762f059cf04ee1f2c8a65156",
+        "ofac_revision": "OFAC-ENTITY-36-e311b28b87e82288",
+        "ofac_source": "https://sanctionslistservice.ofac.treas.gov/entities/36",
+        "official_entry_uid": "36",
+        "permit_consumer": "",
+        "relation": "DISTINCT_FROM_CANDIDATE",
+        "relying_party": "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
+        "requester": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+        "screening_id": 1,
+        "state": "PERMIT_ACTIVE"
+      }
+    },
+    {
+      "id": "H4-consume-permit",
+      "actor": "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
+      "method": "consume_permit",
+      "args": [
+        1
+      ],
+      "return": "PERMIT_CONSUMED",
+      "expected": [
+        "PERMIT_CONSUMED"
+      ],
+      "tx_hash": "0xe245170c419f7ff8cf0613d2032825fc792d01a4de2843b5d7bc8803f0782d47",
+      "explorer": "https://explorer-studio.genlayer.com/tx/0xe245170c419f7ff8cf0613d2032825fc792d01a4de2843b5d7bc8803f0782d47",
+      "status": "FINALIZED",
+      "consensus": "MAJORITY_AGREE",
+      "readback": {
+        "attempts": 1,
+        "conflicting_fields": [
+          "COUNTRY",
+          "JURISDICTION",
+          "LEGAL_NAME",
+          "OTHER_NAME"
+        ],
+        "gleif_digest": "05e3c41b653ecad896f51fbba6268836cae1c3466f8b9a72268033ae5ed610d9",
+        "gleif_revision": "2026-10-01T16:00:00Z",
+        "gleif_source": "https://api.gleif.org/api/v1/lei-records/5493001KJTIIGC8Y1R12",
+        "lei": "5493001KJTIIGC8Y1R12",
+        "matched_fields": [],
+        "ofac_digest": "e311b28b87e8228874cadd5acebc19448b6be75a762f059cf04ee1f2c8a65156",
+        "ofac_revision": "OFAC-ENTITY-36-e311b28b87e82288",
+        "ofac_source": "https://sanctionslistservice.ofac.treas.gov/entities/36",
+        "official_entry_uid": "36",
+        "permit_consumer": "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
+        "relation": "DISTINCT_FROM_CANDIDATE",
+        "relying_party": "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
+        "requester": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+        "screening_id": 1,
+        "state": "PERMIT_CONSUMED"
+      }
+    },
+    {
+      "id": "F7-replay-consumption",
+      "actor": "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
+      "method": "consume_permit",
+      "args": [
+        1
+      ],
+      "return": "NO_ACTIVE_PERMIT",
+      "expected": [
+        "NO_ACTIVE_PERMIT"
+      ],
+      "tx_hash": "0xb3529f612b9650f43831a33c0dbd024b59c86b7a7c1c0cbabe8957fd93cb26c7",
+      "explorer": "https://explorer-studio.genlayer.com/tx/0xb3529f612b9650f43831a33c0dbd024b59c86b7a7c1c0cbabe8957fd93cb26c7",
+      "status": "FINALIZED",
+      "consensus": "MAJORITY_AGREE",
+      "readback": {
+        "attempts": 1,
+        "conflicting_fields": [
+          "COUNTRY",
+          "JURISDICTION",
+          "LEGAL_NAME",
+          "OTHER_NAME"
+        ],
+        "gleif_digest": "05e3c41b653ecad896f51fbba6268836cae1c3466f8b9a72268033ae5ed610d9",
+        "gleif_revision": "2026-10-01T16:00:00Z",
+        "gleif_source": "https://api.gleif.org/api/v1/lei-records/5493001KJTIIGC8Y1R12",
+        "lei": "5493001KJTIIGC8Y1R12",
+        "matched_fields": [],
+        "ofac_digest": "e311b28b87e8228874cadd5acebc19448b6be75a762f059cf04ee1f2c8a65156",
+        "ofac_revision": "OFAC-ENTITY-36-e311b28b87e82288",
+        "ofac_source": "https://sanctionslistservice.ofac.treas.gov/entities/36",
+        "official_entry_uid": "36",
+        "permit_consumer": "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
+        "relation": "DISTINCT_FROM_CANDIDATE",
+        "relying_party": "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
+        "requester": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+        "screening_id": 1,
+        "state": "PERMIT_CONSUMED"
+      }
+    }
+  ],
+  "complete": true,
+  "final_screening": {
+    "attempts": 1,
+    "conflicting_fields": [
+      "COUNTRY",
+      "JURISDICTION",
+      "LEGAL_NAME",
+      "OTHER_NAME"
+    ],
+    "gleif_digest": "05e3c41b653ecad896f51fbba6268836cae1c3466f8b9a72268033ae5ed610d9",
+    "gleif_revision": "2026-10-01T16:00:00Z",
+    "gleif_source": "https://api.gleif.org/api/v1/lei-records/5493001KJTIIGC8Y1R12",
+    "lei": "5493001KJTIIGC8Y1R12",
+    "matched_fields": [],
+    "ofac_digest": "e311b28b87e8228874cadd5acebc19448b6be75a762f059cf04ee1f2c8a65156",
+    "ofac_revision": "OFAC-ENTITY-36-e311b28b87e82288",
+    "ofac_source": "https://sanctionslistservice.ofac.treas.gov/entities/36",
+    "official_entry_uid": "36",
+    "permit_consumer": "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
+    "relation": "DISTINCT_FROM_CANDIDATE",
+    "relying_party": "0xA63DE24e30C88FB1019E8956654730316e36eDBE",
+    "requester": "0x736A168247e3f0C52F7907c9a8fDac572DF9c8bB",
+    "screening_id": 1,
+    "state": "PERMIT_CONSUMED"
+  }
+}
