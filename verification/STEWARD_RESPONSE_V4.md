@@ -14,6 +14,6 @@ The September 30 submission was not sufficient. Contract v3 compared an applican
 - Frontend production build: passed on 2026-10-02.
 - New v4 StudioNet deployment: **verified** at `0xeC8dc7def8232b4fa1d8a0fF64354eDE88E76e2f`.
 - v4 live lifecycle receipts and source parity: **verified**, 11 finalized `MAJORITY_AGREE` transactions, final state `PERMIT_CONSUMED`.
-- Updated v4 Pages deployment: **pending**. The public Pages URL remains v3 until the rebuilt frontend is published.
+- Updated v4 Pages deployment: **verified** at `https://entitymatchgate.pages.dev` (immutable deployment `https://8ae1ebc5.entitymatchgate.pages.dev`). Both URLs returned HTTP 200 and their production bundle contains the v4 contract address, GLEIF flow and permit state.
 
-Do not resubmit the public website as v4 until the GitHub push and Pages deployment are complete. Contract source parity, live source consensus, the consequential lifecycle, final readback and local adversarial suite are complete.
+The v4 source and evidence were pushed to GitHub at commit `45ba5b3`. Contract source parity, live source consensus, the consequential lifecycle, final readback, local adversarial suite and public Pages deployment are complete.

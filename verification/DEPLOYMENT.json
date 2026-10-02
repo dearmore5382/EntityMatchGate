@@ -4,7 +4,8 @@
   "repository": "https://github.com/dearmore5382/EntityMatchGate",
   "contract_address": "0xeC8dc7def8232b4fa1d8a0fF64354eDE88E76e2f",
   "contract_explorer": "https://explorer-studio.genlayer.com/address/0xeC8dc7def8232b4fa1d8a0fF64354eDE88E76e2f",
-  "status": "V4_CONTRACT_E2E_VERIFIED_UI_DEPLOY_PENDING",
+  "pages_deployment": "https://8ae1ebc5.entitymatchgate.pages.dev",
+  "status": "V4_FULLY_VERIFIED",
   "verified_readback": {
     "name": "EntityMatchGate",
     "version": 4,

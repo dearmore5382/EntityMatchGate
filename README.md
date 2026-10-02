@@ -2,7 +2,7 @@
 
 EntityMatchGate resolves whether one official GLEIF legal-entity record is the same as one exact OFAC historical candidate. A strong `DISTINCT_FROM_CANDIDATE` decision can activate a one-time on-chain permit that only a pre-named relying-party wallet can consume.
 
-The v4 contract is deployed and lifecycle-verified on StudioNet at [`0xeC8dc7def8232b4fa1d8a0fF64354eDE88E76e2f`](https://explorer-studio.genlayer.com/address/0xeC8dc7def8232b4fa1d8a0fF64354eDE88E76e2f). The current Pages deployment remains v3 until the rebuilt frontend is published.
+The v4 contract is deployed and lifecycle-verified on StudioNet at [`0xeC8dc7def8232b4fa1d8a0fF64354eDE88E76e2f`](https://explorer-studio.genlayer.com/address/0xeC8dc7def8232b4fa1d8a0fF64354eDE88E76e2f). The v4 interface is live at [entitymatchgate.pages.dev](https://entitymatchgate.pages.dev).
 
 ## Why v4 exists
 
